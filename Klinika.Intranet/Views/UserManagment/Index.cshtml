@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Klinika.Intranet.Models.UserModel>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+<h1>Uzytkownicy</h1>
+
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                Manage the role
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Role)
+                </td>
+                <td>
+                    <form asp-action="AddToRole" method="post">
+                    <input type="hidden" name="userId" value="@user.UserId"/>
+                    <select name="Role">
+                        <option value="Administrator">Administrator</option>
+                        <option value="Lekarz">Lekarz</option>
+                        <option value="Pacjent">Pacjent</option>
+                    </select>
+                    <button type="submit">Przypisz</button>
+                    </form>
+                </td>
+                <td>
+                    <a class="delete" title="Delete" asp-action="Delete" asp-route-id="@user.UserId"><i class="material-icons" style="color: #E34724">&#xE872;</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@foreach (var user in Model)
+{
+        <div class="row">
+            <div class="col">
+                <h3>@user.UserName</h3>
+            </div>
+            <div class="col">
+                <small>@user.UserId</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                @user.Role
+                </p>
+            </div>
+        </div>
+}*@
+
+<script type="text/javascript">
+    $('#example').DataTable({
+    });
+</script>

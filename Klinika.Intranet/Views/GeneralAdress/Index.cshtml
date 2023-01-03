@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Klinika.Data.Data.CMS.GeneralAdress>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ulica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KodPocztowy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PozycjaWyswietlania)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CzyAktywny)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miasto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ulica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KodPocztowy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PozycjaWyswietlania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CzyAktywny)
+            </td>
+            <td>
+                    <a class="edit" title="Edit" asp-action="Edit" asp-route-id="@item.IdAdresu"><i class="material-icons" style="color: #FFC107">&#xE254;</i></a>
+                    <a class="view" title="View" asp-action="Details" asp-route-id="@item.IdAdresu"><i class="material-icons" style="color: #03A9F4">&#xE417;</i></a>
+                    <a class="delete" title="Delete" asp-action="Delete" asp-route-id="@item.IdAdresu"><i class="material-icons" style="color: #E34724">&#xE872;</i></a>
+@*                <a asp-action="Edit" asp-route-id="@item.IdAdresu">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdAdresu">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdAdresu">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $('#example').DataTable({
+    });
+</script>
